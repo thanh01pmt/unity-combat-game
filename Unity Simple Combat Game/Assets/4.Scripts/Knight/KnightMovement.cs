@@ -24,11 +24,12 @@ public class KnightMovement : MonoBehaviour
 	{
 		if (_PlayerHealth.health > 0)
 		{
-			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-			if (horizontalMove > 0.0001f)
+			if (animator.GetBool("Attack1") | animator.GetBool("Attack2"))
+			{
+				horizontalMove = 0.0f;
+			} else
             {
-				Debug.Log("Walk");
-
+				horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 			}
 
 			animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -60,7 +61,7 @@ public class KnightMovement : MonoBehaviour
 		}
 		else
 		{
-			horizontalMove = 0;
+			horizontalMove = 0.0f;
 		}
 	}
 
